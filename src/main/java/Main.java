@@ -14,7 +14,7 @@ public class Main {
         new Server(10086);
 
         //Student stu = new Student();
-        //stu.setId(3).setName("邹家伦").setAge("66").setSex("女")
+        //stu.setId(3).setCourseName("邹家伦").setAge("66").setSex("女")
         //        .setMailbox("").setPassword("");
         //Client client = new Client(10086);
         //client.msg = stu.toString();

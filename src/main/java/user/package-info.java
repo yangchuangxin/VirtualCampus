@@ -4,5 +4,9 @@
  * id：职位编码 + 年份后两位 + 流水号
  *
  * 8/30/2017
+ *
+ * 修改成员变量时要更改：
+ * setField
+ * toStirng
  */
 package user;

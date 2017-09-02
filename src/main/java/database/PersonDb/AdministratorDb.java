@@ -1,11 +1,13 @@
 package database.PersonDb;
 
+import database.BasicDbOperation;
 import net.ucanaccess.jdbc.UcanaccessDriver;
 import user.Administrator;
+import user.Person;
 
 import java.sql.*;
 
-public class AdministratorDb extends PersonDb{
+public class AdministratorDb extends BasicDbOperation {
 
     public AdministratorDb() {
         super("/Users/zhangminxue/Desktop/PersonDb.accdb", "administrator");
@@ -76,6 +78,15 @@ public class AdministratorDb extends PersonDb{
 
         pstmt.close();
         conn.close();
+    }
+
+    /**
+     * 删除对应学生
+     *
+     * @param person 具体学生
+     */
+    public void delete(Person person) throws SQLException {
+        delete(person.getId());
     }
 
 }

@@ -15,7 +15,7 @@ public class Client {
 
     private int operate;
     private int tableName;
-    private String Infm;
+    private String infm;
 
     private boolean ok;
     private int port;
@@ -25,7 +25,7 @@ public class Client {
     }
 
     public String createMessage() {
-        return "" + operate + " " + tableName + " " + Infm + "\n";
+        return "" + operate + " " + tableName + " " + infm + "\n";
     }
 
     /**
@@ -75,7 +75,7 @@ public class Client {
     }
 
     public Client setInfm(String Infm) {
-        this.Infm = Infm;
+        this.infm = Infm;
         return this;
     }
 
@@ -92,6 +92,6 @@ public class Client {
     }
 
     public String getInfm() {
-        return Infm;
+        return infm;
     }
 }

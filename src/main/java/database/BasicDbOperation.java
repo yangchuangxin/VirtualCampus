@@ -1,17 +1,15 @@
-package database.PersonDb;
+package database;
 
-import database.BasicDbOperation;
 import net.ucanaccess.jdbc.UcanaccessDriver;
-import user.Person;
 
 import java.sql.*;
 
-public class PersonDb implements BasicDbOperation{
+public class BasicDbOperation {
+    protected String dbPath;
+    protected String tableName;
 
-    String dbPath;
-    String tableName;
 
-    PersonDb(String dbPath, String tableName) {
+    public BasicDbOperation(String dbPath, String tableName) {
         this.dbPath = dbPath;
         this.tableName = tableName;
     }
@@ -24,10 +22,6 @@ public class PersonDb implements BasicDbOperation{
     public Connection getConn() throws SQLException {
         String url = UcanaccessDriver.URL_PREFIX + dbPath + ";newDatabaseVersion=V2007";
         return DriverManager.getConnection(url);
-    }
-
-    public void add(Object obj){
-
     }
 
     public ResultSet getSomeCol(String col, String cmd) throws SQLException {
@@ -66,14 +60,5 @@ public class PersonDb implements BasicDbOperation{
 
         pstmt.close();
         conn.close();
-    }
-
-    /**
-     * 删除对应学生
-     *
-     * @param person 具体学生
-     */
-    public void delete(Person person) throws SQLException {
-        delete(person.getId());
     }
 }

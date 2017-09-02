@@ -1,11 +1,13 @@
 package database.PersonDb;
 
+import database.BasicDbOperation;
 import net.ucanaccess.jdbc.UcanaccessDriver;
+import user.Person;
 import user.Teacher;
 
 import java.sql.*;
 
-public class TeacherDb extends PersonDb{
+public class TeacherDb extends BasicDbOperation {
 
     public TeacherDb() {
         super("/Users/zhangminxue/Desktop/PersonDb.accdb", "teacher");
@@ -80,5 +82,12 @@ public class TeacherDb extends PersonDb{
         conn.close();
     }
 
-
+    /**
+     * 删除对应学生
+     *
+     * @param person 具体学生
+     */
+    public void delete(Person person) throws SQLException {
+        delete(person.getId());
+    }
 }

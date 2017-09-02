@@ -1,8 +1,10 @@
 package server;
 
-import database.PersonDB.AdministratorDb;
-import database.PersonDB.StudentDb;
-import database.PersonDB.TeacherDb;
+import Course.Course;
+import database.CourseDb.CourseDb;
+import database.PersonDb.AdministratorDb;
+import database.PersonDb.StudentDb;
+import database.PersonDb.TeacherDb;
 import user.Administrator;
 import user.Student;
 import user.Teacher;
@@ -14,6 +16,10 @@ class Interpreter {
     private String objMsg; //操作，数据库信息，对象信息
     private String returnMsg;
 
+    /**
+     *
+     * @param msg 1 1 stu.toString
+     */
     Interpreter(String msg) {
         int i = 0, j = 0;
         while (msg.charAt(j) != ' ') ++j;
@@ -35,13 +41,32 @@ class Interpreter {
             case Server.DB_TEACHER:
                 updateTeacherDb();
                 break;
-            case Server.DN_ADMINISTRATOR:
+            case Server.DB_ADMINISTRATOR:
                 updateAdministratorDb();
+                break;
+            case Server.DB_COURSE:
+                updateCourseDb();
                 break;
             default:
                 break;
         }
         returnMsg = "true";
+    }
+
+    private void updateCourseDb() throws SQLException {
+        CourseDb courseDb = new CourseDb();
+        switch (operate) {
+            case Server.ADD:
+                courseDb.add(new Course(objMsg));
+                break;
+            case Server.DELETE:
+                courseDb.delete(new Course(objMsg));
+                break;
+            case Server.MODIFY:
+                courseDb.modify(new Course(objMsg));
+                break;
+            //case 4:studentDb.find()
+        }
     }
 
     String getReturnMsg() {

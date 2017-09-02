@@ -1,18 +1,21 @@
 package user;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by John on 2017/8/30 0030.
  */
 public class Student extends Person {
     public static int ENCODING = 1;
 
-    private String institute;
-    private String studentNumber;
-    private String startYear;
+    private String institute = "";
+    private String studentNumber = "";
+    private String startYear = "";
+    private Map<Integer, Double> score = new HashMap<>();
 
     public Student() {
         super();
-        institute = "";
         studentNumber = createStudentNumber();
     }
 
@@ -40,6 +43,12 @@ public class Student extends Person {
             case "studentNumber":
                 setStudentNumber(fieldValue);
                 break;
+            case "startYear":
+                setStartYear(fieldValue);
+                break;
+            case "score":
+                setScore(fieldValue);
+                break;
             default:
                 super.setField(fieldName, fieldValue);
                 break;
@@ -58,6 +67,25 @@ public class Student extends Person {
         this.startYear = startYear;
     }
 
+    /**
+     * @param str {1=1.1, 2=2.2, 3=3.3}
+     */
+    public void setScore(String str) {
+        int i = 1, j = 1, n = str.length() - 1;
+        Integer key;
+        Double value;
+        while (j < n) {
+            while (j < n && str.charAt(j) != '=') ++j;
+            key = Integer.parseInt(str.substring(i, j));
+            i = ++j;
+            while (j < n && str.charAt(j) != ',') ++j;
+            value = Double.parseDouble(str.substring(i, j));
+            ++j;
+            i = ++j;
+            score.put(key, value);
+        }
+    }
+
     public String getStartYear() {
         return startYear;
     }
@@ -68,6 +96,10 @@ public class Student extends Person {
 
     public String getStudentNumber() {
         return studentNumber;
+    }
+
+    public Map<Integer, Double> getScore() {
+        return new HashMap<>(score);
     }
 
     /**
@@ -84,10 +116,11 @@ public class Student extends Person {
 
         StringBuilder ret = new StringBuilder();
         ret.append(super.toString());
-
-        Class cls = this.getClass();
-        addFieldsToStringBuilder(cls.getDeclaredFields(), ret);
-
+        ret.append("institute:").append(getInstitute())
+                .append(";studentNumber:").append(getStudentNumber())
+                .append(";startYear:").append(getStartYear())
+                .append(";score:").append(getScore())
+                .append(";");
         return ret.toString();
     }
 }

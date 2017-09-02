@@ -5,7 +5,11 @@ package user;
  */
 public class Teacher extends Person {
     public static int ENCODING = 2;
-    private String institute;
+    private String institute = "";
+    private String startYear = "";
+    private static final String[] fields = {"id", "name",
+            "sex", "age", "cardNumber", "password", "telephone",
+            "mailbox", "institute", "startYear"};
 
     public Teacher() {
         super();
@@ -31,30 +35,38 @@ public class Teacher extends Person {
             case "institute":
                 setInstitute(fieldValue);
                 break;
+            case "startYear":
+                setStartYear(fieldValue);
+                break;
             default:
                 super.setField(fieldName, fieldValue);
                 break;
         }
     }
 
-    public Teacher setInstitute(String institute) {
+    public void setInstitute(String institute) {
         this.institute = institute;
-        return this;
+    }
+
+    public void setStartYear(String startYear) {
+        this.startYear = startYear;
     }
 
     public String getInstitute() {
         return institute;
     }
 
+    public String getStartYear() {
+        return startYear;
+    }
+
     @Override
     public String toString() {
-
         StringBuilder ret = new StringBuilder();
         ret.append(super.toString());
-
-        Class cls = this.getClass();
-        addFieldsToStringBuilder(cls.getDeclaredFields(), ret);
-
+        ret.append("institute:").append(getInstitute())
+                .append(";startYear:").append(getStartYear())
+                .append(";");
         return ret.toString();
     }
 }

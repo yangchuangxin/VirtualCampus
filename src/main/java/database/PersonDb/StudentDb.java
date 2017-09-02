@@ -1,5 +1,7 @@
 package database.PersonDb;
 
+import database.BasicDbOperation;
+import user.Person;
 import user.Student;
 
 import java.sql.Connection;
@@ -7,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class StudentDb extends PersonDb {
+public class StudentDb extends BasicDbOperation {
 
     //public static String dbName = "PersonDb";
     //public static String tableName = "stuent";
@@ -18,7 +20,7 @@ public class StudentDb extends PersonDb {
     //private String dbPath = "/Users/zhangminxue/Desktop/PersonDb.accdb";
 
     public StudentDb() {
-        super("/Users/zhangminxue/Desktop/PersonDb.accdb", "student");
+        super("/Users/zhangminxue/Desktop/PersonDb.accdb", "Student");
     }
 
     public StudentDb(String dbPath, String tableName) {
@@ -82,5 +84,14 @@ public class StudentDb extends PersonDb {
 
         pstmt.close();
         conn.close();
+    }
+
+    /**
+     * 删除对应学生
+     *
+     * @param person 具体学生
+     */
+    public void delete(Person person) throws SQLException {
+        delete(person.getId());
     }
 }

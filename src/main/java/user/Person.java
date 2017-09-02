@@ -1,30 +1,25 @@
 package user;
 
-import java.lang.reflect.Field;
-
 /**
  * Created by John on 2017/8/30 0030.
  */
 public class Person {
-    private long id; //流水号
-    private String name;
-    private String sex;
-    private String age;
-    private String cardNumber; //类型编码 + 年份后两位 + id
-    private String password;
-    private String telephone;
-    private String mailbox;
+    private long id = 0; //流水号
+    private String name = "";
+    private String sex = "";
+    private String age = "";
+    private String cardNumber = ""; //类型编码 + 年份后两位 + id
+    private String password = "";
+    private String telephone = "";
+    private String mailbox = "";
     //protected static long serialNumber = 0; //流水号
 
+    private static int CURRENT_USER = 0;
+    private static final int STUDENT = 1;
+    private static final int TEACHER = 2;
+    private static final int ADMINISTRATOR = 3;
 
     Person() {
-        name = "";
-        sex = "";
-        age = "";
-        cardNumber = "";
-        password = "";
-        telephone = "";
-        mailbox = "";
     }
 
     /**
@@ -136,31 +131,16 @@ public class Person {
 
     @Override
     public String toString() {
-
         StringBuilder ret = new StringBuilder();
-
-        Class cls = this.getClass().getSuperclass();
-        Field[] fields = cls.getDeclaredFields();
-
-        addFieldsToStringBuilder(fields, ret);
-
+        ret.append("id:").append(getId())
+                .append(";name:").append(getName())
+                .append(";sex:").append(getSex())
+                .append(";age:").append(getAge())
+                .append(";cardNumber:").append(getCardNumber())
+                .append(";password:").append(getPassword())
+                .append(";telephone:").append(getTelephone())
+                .append(";mailbox:").append(getMailbox())
+                .append(";");
         return ret.toString();
-    }
-
-    /**
-     * @param fields        fields
-     * @param stringBuilder stringBuilder
-     * @return 符合要求的字段数量
-     */
-    void addFieldsToStringBuilder(Field[] fields, StringBuilder stringBuilder) {
-        for (Field field : fields) {
-            field.setAccessible(true);
-            try {
-                stringBuilder.append(field.getName()).append(":").
-                        append(field.get(this)).append(";");
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

@@ -5,6 +5,7 @@ package user;
  */
 public class Administrator extends Person {
     public static int ENCODING = 3;
+
     public Administrator(){
         super();
     }
