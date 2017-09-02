@@ -16,17 +16,14 @@ class ServerEntity extends Thread {
 
 
     private String interpret(String str) throws SQLException {
-        Interpreter interpreter = new Interpreter(str);
-        interpreter.execute();
-        return interpreter.getReturnMsg();
+        Interpreter Interpreter = new Interpreter(str);
+        Interpreter.execute();
+        return Interpreter.getReturnMsg();
     }
 
     public void run() {
         try {
             DataInputStream in = new DataInputStream(client.getInputStream());
-            //ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
-            //inputStream.readObject();
-            //ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
             DataOutputStream out = new DataOutputStream(client.getOutputStream());
             while (true) {
 
@@ -38,10 +35,6 @@ class ServerEntity extends Thread {
                 String ret = interpret(str);
 
                 out.writeUTF(ret);
-                //System.out.println(1);
-                //Student stu = (Student)inputStream.readObject();
-                //System.out.println(stu.toString());
-
 
             }
         } catch (IOException e) {

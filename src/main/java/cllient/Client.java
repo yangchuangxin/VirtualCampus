@@ -8,74 +8,32 @@ import java.net.Socket;
 
 public class Client {
 
-    public static int ADD = 1;
-    public static int DELETE = 2;
-    public static int MODIFY = 3;
-    public static int FIND = 4;
-
-    private int operate;
-    private int tableName;
-    private String infm;
-
-    private boolean ok;
     private int port;
+    private Socket server;
+    private String returnMsg;
 
     public Client(int port) throws IOException, InterruptedException {
         this.port = port;
+        server = new Socket(InetAddress.getLocalHost(), port);
     }
 
-    public String createMessage() {
-        return "" + operate + " " + tableName + " " + infm + "\n";
+    public void sendMsg(String msg) throws IOException {
+
+        DataInputStream in = new DataInputStream(server.getInputStream());
+        DataOutputStream out = new DataOutputStream(server.getOutputStream());
+
+        out.writeUTF(msg);
+
+        returnMsg = in.readUTF();
+
+        server.close();
     }
 
     /**
      * 返回值？
      */
-    public void sendMessage() throws IOException, InterruptedException {
-        connect();
-    }
-
-    private void connect() throws IOException, InterruptedException {
-
-        Socket server = new Socket(InetAddress.getLocalHost(), port);
-        DataInputStream in = new DataInputStream(server.getInputStream());
-        DataOutputStream out = new DataOutputStream(server.getOutputStream());
-
-        //while (true) {
-
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //String s = br.readLine();
-
-        out.writeUTF(createMessage());
-
-
-
-        String str = in.readUTF();
-        System.out.println(str);
-
-        //   if (str.equals("end"))
-        //       break;
-
-        server.close();
-    }
-
     public Client setPort(int port) {
         this.port = port;
-        return this;
-    }
-
-    public Client setOperate(int operate) {
-        this.operate = operate;
-        return this;
-    }
-
-    public Client setTableName(int tableName) {
-        this.tableName = tableName;
-        return this;
-    }
-
-    public Client setInfm(String Infm) {
-        this.infm = Infm;
         return this;
     }
 
@@ -83,15 +41,7 @@ public class Client {
         return port;
     }
 
-    public int getOperate() {
-        return operate;
-    }
-
-    public int getTableName() {
-        return tableName;
-    }
-
-    public String getInfm() {
-        return infm;
+    public String getReturnMsg() {
+        return returnMsg;
     }
 }
