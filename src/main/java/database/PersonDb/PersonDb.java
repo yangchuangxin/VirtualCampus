@@ -1,11 +1,12 @@
-package database.PersonDB;
+package database.PersonDb;
 
+import database.BasicDbOperation;
 import net.ucanaccess.jdbc.UcanaccessDriver;
 import user.Person;
 
 import java.sql.*;
 
-public class PersonDb {
+public class PersonDb implements BasicDbOperation{
 
     String dbPath;
     String tableName;
@@ -25,6 +26,9 @@ public class PersonDb {
         return DriverManager.getConnection(url);
     }
 
+    public void add(Object obj){
+
+    }
 
     public ResultSet getSomeCol(String col, String cmd) throws SQLException {
         Connection conn = getConn();

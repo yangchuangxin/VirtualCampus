@@ -25,7 +25,6 @@ public class Main {
         //stu.setId("").setPassword()
         //Person person = new Person();
         //Person ps = new Person();
-
         //System.out.println(stu);
         //String str = stu.toString();
         //int n = str.length();

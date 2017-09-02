@@ -2,7 +2,7 @@ package Subject;
 
 import java.lang.reflect.Field;
 
-public class Subject {
+public class Course {
     private long id;
     private String name;
     private long teacherId;
@@ -12,7 +12,7 @@ public class Subject {
     private String semester;
     private double credit;
 
-    public Subject() {
+    public Course() {
         id = 0;
         name = "";
         teacherId = 0;
@@ -23,7 +23,7 @@ public class Subject {
         credit = 0.0;
     }
 
-    public Subject(String str) {
+    public Course(String str) {
         int i = 0, j = 0, n = str.length();
         while (str.charAt(n - 1) != ';') --n;
         String fieldName, fieldValue;

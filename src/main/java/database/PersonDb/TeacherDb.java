@@ -1,4 +1,4 @@
-package database.PersonDB;
+package database.PersonDb;
 
 import net.ucanaccess.jdbc.UcanaccessDriver;
 import user.Teacher;

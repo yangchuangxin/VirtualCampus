@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 /**
  * Created by John on 2017/8/30 0030.
  */
-public  class Person {
+public class Person {
     private long id; //流水号
     private String name;
     private String sex;
@@ -16,6 +16,7 @@ public  class Person {
     private String mailbox;
     //protected static long serialNumber = 0; //流水号
 
+
     Person() {
         name = "";
         sex = "";
@@ -25,7 +26,6 @@ public  class Person {
         telephone = "";
         mailbox = "";
     }
-
 
     /**
      * 未完成

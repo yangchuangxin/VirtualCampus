@@ -1,4 +1,4 @@
-package database.PersonDB;
+package database.PersonDb;
 
 import user.Student;
 
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class StudentDb extends PersonDb {
 
-    //public static String dbName = "PersonDB";
+    //public static String dbName = "PersonDb";
     //public static String tableName = "stuent";
 
 
@@ -24,7 +24,6 @@ public class StudentDb extends PersonDb {
     public StudentDb(String dbPath, String tableName) {
         super(dbPath, tableName);
     }
-
 
     /**
      * 添加新学生，id 自动生成
