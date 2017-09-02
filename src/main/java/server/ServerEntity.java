@@ -2,6 +2,7 @@ package server;
 
 import java.io.*;
 import java.net.Socket;
+import java.sql.SQLException;
 
 class ServerEntity extends Thread {
     private Socket client;
@@ -9,6 +10,13 @@ class ServerEntity extends Thread {
 
     ServerEntity(Socket c) throws IOException {
         client = c;
+    }
+
+
+    private String interpret(String str) throws SQLException {
+        Interpreter interpreter = new Interpreter(str);
+        interpreter.execute();
+        return interpreter.getReturnMsg();
     }
 
     public void run() {
@@ -20,15 +28,21 @@ class ServerEntity extends Thread {
                 String str;
                 str = in.readUTF();
                 System.out.println(str);
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-                String s = br.readLine();
-                out.writeUTF(s);
-
                 if (str.equals("end"))
                     break;
+                String ret = interpret(str);
+
+                /*
+                处理请求
+                */
+                //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                //String s = br.readLine();
+                out.writeUTF(ret);
+
+
+
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
 
