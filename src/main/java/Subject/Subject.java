@@ -7,6 +7,7 @@ public class Subject {
     private String name;
     private long teacherId;
     private String teacherName;
+    private int time;
     private String classroom;
     private String semester;
     private double credit;
@@ -16,6 +17,7 @@ public class Subject {
         name = "";
         teacherId = 0;
         teacherName = "";
+        time = 0;
         classroom = "";
         semester = "";
         credit = 0.0;
@@ -37,7 +39,7 @@ public class Subject {
 
     }
 
-    private void setField(String fieldName, String fieldValue){
+    private void setField(String fieldName, String fieldValue) {
         switch (fieldName) {
             case "id":
                 setId(Long.parseLong(fieldValue));
@@ -50,6 +52,9 @@ public class Subject {
                 break;
             case "teacherName":
                 setTeacherName(fieldValue);
+                break;
+            case "time":
+                setTime(Integer.parseInt(fieldValue));
                 break;
             case "classroom":
                 setClassroom(fieldValue);
@@ -81,6 +86,10 @@ public class Subject {
         this.teacherName = teacherName;
     }
 
+    public void setTime(int time) {
+        this.time = time;
+    }
+
     public void setClassroom(String classroom) {
         this.classroom = classroom;
     }
@@ -109,6 +118,10 @@ public class Subject {
         return teacherName;
     }
 
+    public int getTime() {
+        return time;
+    }
+
     public String getClassroom() {
         return classroom;
     }
@@ -122,7 +135,7 @@ public class Subject {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
 
         StringBuilder ret = new StringBuilder();
         ret.append(super.toString());
